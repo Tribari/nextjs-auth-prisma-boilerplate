@@ -1,6 +1,8 @@
 {
   "name": "nextjs-auth-prisma-boilerplate",
-  "private": true,
+  "description": "A quickstart boilerplate for next,js with next-auth and prisma.",
+  "private": false,
+  "license" : "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

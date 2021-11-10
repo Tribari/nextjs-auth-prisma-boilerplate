@@ -31,3 +31,10 @@ Read more information on the following pages:
 - [Next.js - ReactFramework](https://nextjs.org/)
 - [NextAuth.js - Authentification for Next.js](https://next-auth.js.org/)
 - [Prisma - Next-generation Node.js and TypeScript ORM](https://www.prisma.io/)
+- [Nodemailer - Easy email sending with Node.js](https://nodemailer.com/about/)
+
+## LICENSE
+
+This project ist licensed under the MIT-License. 
+
+Please be aware, that used dependencies are licensed under different licenses!

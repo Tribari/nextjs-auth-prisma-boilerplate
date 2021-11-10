@@ -1,13 +1,16 @@
 import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
-
-import { NextApiHandler } from "next";
 import { PrismaClient } from "@prisma/client";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 const prisma = new PrismaClient();
 
 export default NextAuth({
+    callbacks: {
+      session({ session, token, user }) {
+        return session
+      },
+    },
     providers: [
         EmailProvider({
             server: {

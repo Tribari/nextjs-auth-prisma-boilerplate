@@ -6,6 +6,13 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 const prisma = new PrismaClient();
 
 export default NextAuth({
+    pages: {
+      signIn:         '/auth/signin',
+      newUser:        '/auth/new-user',
+      verifyRequest:  '/auth/verify-request',
+      error:          '/auth/error',
+      signOut:        '/auth/signout'
+    },
     callbacks: {
       session({ session, token, user }) {
         return session

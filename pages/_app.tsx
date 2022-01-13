@@ -3,10 +3,26 @@ import type { AppProps } from 'next/app'
 import { SessionProvider } from "next-auth/react"
 import LayoutComponent from '@/components/layout'
 
+const sitename = "NEXTJS-PRISMA-BOILERPLATE"
+
+const mainMenuEntries = [
+  {
+    name: "Home",
+    url: "/"
+  }, 
+  {
+    name: "Test",
+    url: "/test"
+  }
+]
+
 export default function MyApp({Component, pageProps: { session, ...pageProps }}: AppProps) {
   return (
     <SessionProvider session={session}>
-      <LayoutComponent>
+      <LayoutComponent 
+        sitename={sitename} 
+        mainMenu={mainMenuEntries}
+      >
         <Component {...pageProps}/>
       </LayoutComponent>
     </SessionProvider>

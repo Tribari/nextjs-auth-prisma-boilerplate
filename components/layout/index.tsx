@@ -9,15 +9,19 @@ type Props = {
 export default function LayoutComponent({ children, sitename, mainMenu }: Props) {
     return (
         <div className="min-h-screen bg-gradient-to-r from-blue-200 to-pink-300">
-             <main className="container mx-auto py-4">
+             <div className="container mx-auto py-4">
                 <header>
                     <NavbarComponent sitename={sitename} menuEntries={mainMenu}/>
                 </header>
                 
-                <div className="p-4 bg-white shadow">
+                <main className="p-4 md:p-6 bg-white">
                     {children}
-                </div>
-            </main>
+                </main>
+
+                <footer>
+
+                </footer>
+            </div>
         </div>
     );
 }

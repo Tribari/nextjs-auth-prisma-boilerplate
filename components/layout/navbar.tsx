@@ -11,7 +11,6 @@ export default function NavbarComponent({sitename, menuEntries}: Props) {
 
     return (
         <nav className="p-4 text-white bg-sky-600">
-
             <div className="md:flex">
                 <div className="flex-shrink-0 py-2 md:px-2 md:pr-4 font-extrabold tracking-widest uppercase">
                     <Link href="/">

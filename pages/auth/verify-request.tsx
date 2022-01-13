@@ -1,10 +1,14 @@
+import PageTitle from '@/components/layout/elements'
 import type { NextPage } from 'next'
 
 const VerifyRequest: NextPage = () => {
 
   return (
     <>
-        Check your mails!
+        <PageTitle>Verification needed</PageTitle>
+        <div className="text-center">
+          Check your mails!
+        </div>
     </>
   )
 }

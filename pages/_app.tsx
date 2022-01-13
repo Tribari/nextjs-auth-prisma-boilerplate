@@ -11,8 +11,8 @@ const mainMenuEntries = [
     url: "/"
   }, 
   {
-    name: "Test",
-    url: "/test"
+    name: "Users",
+    url: "/users"
   }
 ]
 

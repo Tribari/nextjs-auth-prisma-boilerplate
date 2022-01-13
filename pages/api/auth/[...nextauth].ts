@@ -13,6 +13,8 @@ export default NextAuth({
     },
     callbacks: {
       session({ session, token, user }) {
+        session.userId = user.id;
+        session.role = user.role;
         return session
       },
     },

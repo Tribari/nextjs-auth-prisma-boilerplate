@@ -1,3 +1,4 @@
+import PageTitle from '@/components/layout/elements'
 import type { NextPage } from 'next'
 import { signOut } from "next-auth/react"
 
@@ -5,7 +6,12 @@ const SignOut: NextPage = () => {
 
     return (
         <>
-            <button onClick={() => signOut()}>Sign out</button>
+            <PageTitle>Sign out</PageTitle>
+            <div className="text-center">
+                <button onClick={() => signOut()} className="p-4 bg-sky-600 hover:bg-sky-800 text-white rounded">
+                    Sign out
+                </button>
+            </div>
         </>
     )
 }

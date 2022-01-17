@@ -1,9 +1,10 @@
+import { UserRole } from "@prisma/client";
 import NavbarComponent from "./navbar";
 
 type Props = {
     children: React.ReactNode,
     sitename: string,
-    mainMenu: {name: string, url: string}[]
+    mainMenu: {name: string, url: string, access?: UserRole}[]
 }
 
 export default function LayoutComponent({ children, sitename, mainMenu }: Props) {

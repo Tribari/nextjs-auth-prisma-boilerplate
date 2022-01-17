@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { SessionProvider } from "next-auth/react"
 import LayoutComponent from '@/components/layout'
+import { UserRole } from '@prisma/client'
 
 const sitename = "NEXTJS-PRISMA-BOILERPLATE"
 
@@ -12,7 +13,8 @@ const mainMenuEntries = [
   }, 
   {
     name: "Users",
-    url: "/users"
+    url: "/users",
+    access: UserRole.ADMIN
   }
 ]
 

@@ -1,13 +1,32 @@
 import Link from 'next/link'
 import { useSession, signIn, signOut } from "next-auth/react"
+import { UserRole } from '@prisma/client';
 
 type Props = {
     sitename: string,
-    menuEntries: {name: string, url: string}[]
+    menuEntries: {
+        name: string, 
+        url: string, 
+        access?: UserRole
+    }[]
 }
 
 export default function NavbarComponent({sitename, menuEntries}: Props) {
     const { data: session } = useSession();
+
+    const entries = menuEntries.map( (entry, index) => {
+        if( (!entry.access) || (entry.access && session) ) {
+            if( (!entry.access) || (entry.access == session?.role) ) {
+                return (
+                    <div key={index} className="py-2 md:px-2 hover:text-pink-200">
+                        <Link href={entry.url}>
+                            <a>{entry.name}</a>
+                        </Link>
+                    </div>
+                )
+            }
+        }
+    })
 
     return (
         <nav className="p-4 text-white bg-sky-600">
@@ -19,13 +38,7 @@ export default function NavbarComponent({sitename, menuEntries}: Props) {
                 </div>
                 <div className="flex-auto md:flex">
                     <div className="md:hidden pt-2 flex-grow border-t border-sky-400"></div>
-                    {menuEntries && menuEntries.map( (entry, index) => (
-                        <div key={index} className="py-2 md:px-2 hover:text-pink-200">
-                            <Link href={entry.url}>
-                                <a>{entry.name}</a>
-                            </Link>
-                        </div>
-                    ))}
+                        {entries}
                     <div className="md:hidden flex-grow border-t border-sky-400"></div>
                 </div>
                 <div className="flex-shrink-0">

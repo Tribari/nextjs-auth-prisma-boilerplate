@@ -1,23 +1,12 @@
 import prisma from '@/lib/prisma'
-
-export enum UserRole {
-    REGISTERED = "REGISTERED",
-    USER = "USER",
-    MANAGER = "MANAGER",
-    ADMIN = "ADMIN"
-}
-
-export enum UserStatus {
-    ACTIVE = "ACTIVE",
-    DISABLED = "DISABLED"
-}
+import { UserRole, UserStatus } from '@prisma/client'
 
 export type UserProps = {
     id: string,
     name?: string | null,
     email: string | null,
-    status: string,
-    role: string,
+    status: UserStatus,
+    role: UserRole,
     image?: string | null,
 }
 

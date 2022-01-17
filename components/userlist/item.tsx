@@ -1,5 +1,5 @@
 import { UserProps } from '@/lib/user'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ToggleComponent from '@/components/layout/toggle'
 import { UserStatus } from '@prisma/client'
 
@@ -11,18 +11,15 @@ export default function UserListItem({user}: Props) {
     const [role, setRole] = useState(user.role.toString())
     const [status, setStatus] = useState(user.status === UserStatus.ACTIVE ? true : false)
 
-    const changeRole = async (e: React.ChangeEvent<HTMLSelectElement>, id: string) => {
-        e.preventDefault()
-        const {value} = e.target
-
+    const updateData = async (data: Object) => {
         try {
-            const res = await fetch(`/api/users/${id}`, {
+            const res = await fetch(`/api/users/${user.id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({role: value.toString()}),
+                body: JSON.stringify(data),
             })
             if(res.status==200) {
-                setRole(value)
+                
             }else if(res.status) {
                 console.log(res.statusText)
             }else {
@@ -33,9 +30,24 @@ export default function UserListItem({user}: Props) {
         }
     }
 
+    useEffect(() => {
+        updateData({role: role.toString()})
+    }, [role])
+
+    useEffect(() => {
+        const newStatus = status ? UserStatus.ACTIVE : UserStatus.DISABLED
+
+        updateData({status: newStatus.toString()})
+    }, [status])
+
+    const changeRole = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const {value} = e.target
+        setRole(value)
+    }
+
     const changeStatus = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.checked)
-        setStatus(e.target.checked)
+        const {checked} = e.target
+        setStatus(checked)
     }
 
     return (
@@ -50,7 +62,7 @@ export default function UserListItem({user}: Props) {
                 <ToggleComponent value={status} labelActive="Active" labelInactive="Deactivated" handleChange={changeStatus} />
             </td>
             <td className="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
-                <select name="role" value={role} onChange={(e) => changeRole(e, user.id)}>
+                <select name="role" value={role} onChange={changeRole}>
                     <option>REGISTERED</option>
                     <option>USER</option>
                     <option>MANAGER</option>

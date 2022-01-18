@@ -1,9 +1,10 @@
-import NextAuth from "next-auth";
-import EmailProvider from "next-auth/providers/email";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import prisma from '@/lib/prisma';
-import { getUserStatus } from "@/lib/user";
-import { UserStatus } from "@prisma/client";
+import NextAuth from "next-auth"
+import EmailProvider from "next-auth/providers/email"
+import GitHubProvider from "next-auth/providers/github"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import prisma from '@/lib/prisma'
+import { getUserStatus } from "@/lib/user"
+import { UserStatus } from "@prisma/client"
 
 export default NextAuth({
     pages: {
@@ -41,6 +42,10 @@ export default NextAuth({
               },
               from: process.env.EMAIL_FROM
         }),
+        GitHubProvider({
+          clientId: process.env.GITHUB_CLIENT_ID,
+          clientSecret: process.env.GITHUB_CLIENT_SECRET
+        })
     ],
     adapter: PrismaAdapter(prisma),
     secret: process.env.SECRET,

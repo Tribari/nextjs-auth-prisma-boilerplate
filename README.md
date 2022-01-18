@@ -31,6 +31,15 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 Change the **role** flag in users table to **ADMIN** for gaining access to user management.
 
+## Github Provider
+
+Create your OAuth App under [Github Developer settings](https://github.com/settings/developers).
+
+Use `http://localhost:3000/api/auth/callback/github` as callback URL.
+
+Copy your **CLIEND ID** and **CLIENT SECRET** to your `.env` file.
+
+
 ## Good to know
 
 Read more information on the following pages:

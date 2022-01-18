@@ -1,4 +1,4 @@
-import { setUserRole, setUserStatus, UserProps } from '@/lib/user'
+import { deleteUser, setUserRole, setUserStatus, UserProps } from '@/lib/user'
 import { UserRole } from '@prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from "next-auth/react"
@@ -20,6 +20,10 @@ export default async function handler(
                 const user = await setUserStatus(id.toString(), status)
             }
             res.status(200)
+        } 
+        else if(req.method === 'DELETE' && session.role === UserRole.ADMIN) {
+            const user = await deleteUser(id.toString())
+            res.status(200).json(user)
         } else {
             res.statusMessage = 'Not authorized!';
             res.status(401);

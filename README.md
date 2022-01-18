@@ -11,7 +11,13 @@ Create a `.env` file according to the content of `.env-example`
 
 ## Getting Started
 
-First, run the development server:
+Start your Database server and run:
+
+```bash
+npx prisma migrate
+```
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -23,6 +29,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
+Change the **role** flag in users table to **ADMIN** for gaining access to user management.
 
 ## Good to know
 
@@ -32,6 +39,7 @@ Read more information on the following pages:
 - [NextAuth.js - Authentification for Next.js](https://next-auth.js.org/)
 - [Prisma - Next-generation Node.js and TypeScript ORM](https://www.prisma.io/)
 - [Nodemailer - Easy email sending with Node.js](https://nodemailer.com/about/)
+- [TailwindCSS - Rapidly build modern websites without ever leaving your HTML](https://tailwindcss.com/)
 
 ## LICENSE
 

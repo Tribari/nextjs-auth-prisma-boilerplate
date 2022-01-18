@@ -54,7 +54,7 @@ export default function UserListItem({user, updateData, deleteData}: Props) {
             </td>
             <td className="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
                 {session?.userId != user.id &&
-                    <select name="role" value={role} onChange={changeRole} className="py-2 px-4">
+                    <select name="role" value={role} onChange={changeRole} className="py-2">
                         <option>REGISTERED</option>
                         <option>USER</option>
                         <option>MANAGER</option>
@@ -62,7 +62,7 @@ export default function UserListItem({user, updateData, deleteData}: Props) {
                     </select>
                 } 
                 {session?.userId === user.id &&
-                    <span className="py-2 px-4">{user.role}</span>
+                    <span className="py-2">{user.role}</span>
                 }
             </td>
             <td className="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">

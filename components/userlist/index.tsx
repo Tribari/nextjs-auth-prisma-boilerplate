@@ -45,7 +45,7 @@ export default function UserListComponent({users}: Props) {
                 })
                 if(res.status==200) {  
                     setOrigData(origData?.filter(user => userId !== user.id))
-                    setUserlist(origData)
+                    setUserlist(origData?.filter(user => userId !== user.id))
                 }else if(res.status) {
                     console.log(res.statusText)
                 }else {

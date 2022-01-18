@@ -39,20 +39,20 @@ export async function getUser(userId: string) : Promise<UserProps | null> {
     })
 }
 
-export async function deleteUser(userId: string) : Promise<UserProps| null> {
-    return await prisma.user.delete({
-        where: {
-            id: userId
-        }
-    })
-}
-
 export async function getUserByEmail(email: string) : Promise<UserProps | null> {
     return await prisma.user.findUnique({
         where: {
             email: email
         },    
         select: prismaSelect
+    })
+}
+
+export async function deleteUser(userId: string) : Promise<UserProps| null> {
+    return await prisma.user.delete({
+        where: {
+            id: userId
+        }
     })
 }
 
@@ -82,7 +82,7 @@ export async function setUserRole(userId: string, role: UserRole = UserRole.REGI
     })
 }
 
-export async function getUserStatis(userId: string) : Promise<UserStatus | null> {
+export async function getUserStatus(userId: string) : Promise<UserStatus | null> {
     const user = await prisma.user.findUnique({
         where: {
             id: userId

@@ -62,7 +62,7 @@ export default function UserListItem({user, updateData, deleteData}: Props) {
                     </select>
                 } 
                 {session?.userId === user.id &&
-                    <span className="py-2">{user.role}</span>
+                    <span className="py-2 px-1">{user.role}</span>
                 }
             </td>
             <td className="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">

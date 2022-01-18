@@ -2,6 +2,8 @@ import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from '@/lib/prisma';
+import { getUserStatus } from "@/lib/user";
+import { UserStatus } from "@prisma/client";
 
 export default NextAuth({
     pages: {
@@ -17,6 +19,15 @@ export default NextAuth({
         session.role = user.role;
         return session
       },
+      async signIn({ user, account, profile, email, credentials }) {
+        if(user && user.id) {
+          const status = await getUserStatus(user.id.toString())
+          return status === UserStatus.ACTIVE
+        }
+        return true
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+      }
     },
     providers: [
         EmailProvider({

@@ -12,9 +12,14 @@ const mainMenuEntries = [
     url: "/"
   }, 
   {
+    name: "Dashboard",
+    url: "/dashboard",
+    access: [UserRole.REGISTERED, UserRole.USER, UserRole.MANAGER, UserRole.ADMIN]
+  },
+  {
     name: "Users",
     url: "/users",
-    access: UserRole.ADMIN
+    access: [UserRole.ADMIN]
   }
 ]
 

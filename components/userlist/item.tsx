@@ -1,5 +1,6 @@
 import { UserProps } from '@/lib/user'
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 import ToggleComponent from '@/components/layout/toggle'
 import { UserStatus } from '@prisma/client'
 import { useSession } from "next-auth/react"
@@ -41,10 +42,27 @@ export default function UserListItem({user, updateData, deleteData}: Props) {
 
     return (
         <tr className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-            <td className="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
-                {user.email}
+            <td className="w-full lg:w-24 p-3 text-gray-800 border border-b block lg:table-cell relative lg:static text-center">
+                {user.image &&
+                    <div className="relative m-auto w-12 h-12 overflow-hidden rounded-full shadow-md border-2 border-gray-200">
+                        <Image
+                            src={user.image}
+                            alt={user.name ? user.name : 'Picture of the user'}
+                            layout="fill"
+                            objectFit="cover"
+                            />
+                    </div>
+                }
             </td>
             <td className="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
+                {user.email}
+                {user.name &&
+                    <span className="ml-2 py-1 px-2 text-xs bg-sky-200 rounded-full">
+                        {user.name}
+                    </span>
+                }
+            </td>
+            <td className="w-full lg:w-40 p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
                 {session?.userId != user.id &&
                     <ToggleComponent value={status} labelActive="Active" labelInactive="Disabled" onClick={changeStatus} />
                 } 
@@ -52,7 +70,7 @@ export default function UserListItem({user, updateData, deleteData}: Props) {
                     <span className="text-xs text-gray-700 uppercase">{user.status}</span>
                 }
             </td>
-            <td className="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
+            <td className="w-full lg:w-44 p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
                 {session?.userId != user.id &&
                     <select name="role" value={role} onChange={changeRole} className="py-2">
                         <option>REGISTERED</option>
@@ -65,7 +83,7 @@ export default function UserListItem({user, updateData, deleteData}: Props) {
                     <span className="py-2 px-1">{user.role}</span>
                 }
             </td>
-            <td className="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
+            <td className="w-full lg:w-24 p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
                 {session?.userId != user.id &&
                     <AlertButton onClick={deleteUser}>Delete</AlertButton>
                 }

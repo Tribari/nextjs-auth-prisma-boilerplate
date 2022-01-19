@@ -76,6 +76,9 @@ export default function UserListComponent({users}: Props) {
                 <thead>
                     <tr className="text-left">
                         <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                            AVATAR
+                        </th>
+                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                             EMAIL
                         </th>
                         <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">

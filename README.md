@@ -1,4 +1,12 @@
+![Signin page](readme_signin.png)
+![USermanagement](readme_usermanagement.png)
+
 # NEXTJS-AUTH-PRISMA-BOILERPLATE
+
+## About
+This project is a small boilerplate template for creating Next.js apps with Next-Auth authentification.
+As example the email & Github providers are already installed. Relevant user informations are stored in a database with Prisma.
+
 
 ## Requirements 
 
@@ -6,6 +14,15 @@
 2. SMPT mail credentials for Next-Auth Mail-Provider (you can configure a different provider if needed)
 
 ## Preparation
+
+Copy this repository to your local development environment.
+
+
+Install all required packages with:
+
+```bash
+npm install
+```
 
 Create a `.env` file according to the content of `.env-example`
 

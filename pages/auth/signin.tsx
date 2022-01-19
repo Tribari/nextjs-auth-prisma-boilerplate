@@ -9,7 +9,7 @@ const SignIn: NextPage = ({ csrfToken, providers }: any) => {
       <PageTitle>Sign in</PageTitle>
       <div className="text-center w-96 m-auto bg-sky-100 p-4 rounded shadow">
 
-        <form method="post" action="/api/auth/signin/email" className="">
+        <form method="post" action="/api/auth/signin/email?callbackUrl=http://localhost:3000/dashboard" className="">
           <input name="csrfToken" type="hidden" defaultValue={csrfToken}/>
           <label className="pr-4">
             <input type="email" placeholder="Your Email address" id="email" name="email" className="p-4 border w-full" />
@@ -26,7 +26,7 @@ const SignIn: NextPage = ({ csrfToken, providers }: any) => {
         </div>
 
         <div className="">
-          <button onClick={() => signIn('github', { callbackUrl: 'http://localhost:3000/' })} 
+          <button onClick={() => signIn('github', { callbackUrl: 'http://localhost:3000/dashboard' })} 
               className="p-4 w-full bg-sky-600 hover:bg-sky-800 text-white rounded">
             Sign in with Github
           </button>

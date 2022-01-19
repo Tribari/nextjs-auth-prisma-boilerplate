@@ -7,7 +7,7 @@ type Props = {
     menuEntries: {
         name: string, 
         url: string, 
-        access?: UserRole
+        access?: UserRole[]
     }[]
 }
 
@@ -16,7 +16,7 @@ export default function NavbarComponent({sitename, menuEntries}: Props) {
 
     const entries = menuEntries.map( (entry, index) => {
         if( (!entry.access) || (entry.access && session) ) {
-            if( (!entry.access) || (entry.access == session?.role) ) {
+            if( (!entry.access) || (entry.access.includes(session?.role ? session?.role : UserRole.REGISTERED)) ) {
                 return (
                     <div key={index} className="py-2 md:px-2 hover:text-pink-200">
                         <Link href={entry.url}>
@@ -44,7 +44,7 @@ export default function NavbarComponent({sitename, menuEntries}: Props) {
                 <div className="flex-shrink-0">
                     <div className="pt-2 md:p-2 hover:text-pink-200">
                         {session && 
-                            <button onClick={() => signOut()}>
+                            <button onClick={() => signOut({ callbackUrl: 'http://localhost:3000/auth/signin' })}>
                                 Sign out
                             </button>
                         }

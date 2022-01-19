@@ -3,7 +3,7 @@ import EmailProvider from "next-auth/providers/email"
 import GitHubProvider from "next-auth/providers/github"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from '@/lib/prisma'
-import { getUserStatus } from "@/lib/user"
+import { getUser } from "@/lib/user"
 import { UserStatus } from "@prisma/client"
 
 export default NextAuth({
@@ -22,8 +22,10 @@ export default NextAuth({
       },
       async signIn({ user, account, profile, email, credentials }) {
         if(user && user.id) {
-          const status = await getUserStatus(user.id.toString())
-          return status === UserStatus.ACTIVE
+          const result = await getUser(user.id.toString())
+          if(result){
+            return result.status === UserStatus.ACTIVE
+          }
         }
         return true
         // Or you can return a URL to redirect to:
@@ -44,7 +46,7 @@ export default NextAuth({
         }),
         GitHubProvider({
           clientId: process.env.GITHUB_CLIENT_ID,
-          clientSecret: process.env.GITHUB_CLIENT_SECRET
+          clientSecret: process.env.GITHUB_CLIENT_SECRET,
         })
     ],
     adapter: PrismaAdapter(prisma),

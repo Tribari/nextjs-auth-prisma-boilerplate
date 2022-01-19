@@ -4,7 +4,7 @@ import NavbarComponent from "./navbar";
 type Props = {
     children: React.ReactNode,
     sitename: string,
-    mainMenu: {name: string, url: string, access?: UserRole}[]
+    mainMenu: {name: string, url: string, access?: UserRole[]}[]
 }
 
 export default function LayoutComponent({ children, sitename, mainMenu }: Props) {
@@ -12,7 +12,7 @@ export default function LayoutComponent({ children, sitename, mainMenu }: Props)
 
     return (
         <div className="min-h-screen bg-gradient-to-r from-blue-200 to-pink-300">
-             <div className="container mx-auto py-4">
+             <div className="container mx-auto lg:py-4">
                 <header>
                     <NavbarComponent sitename={sitename} menuEntries={mainMenu}/>
                 </header>
